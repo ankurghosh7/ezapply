@@ -28,7 +28,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     if (localTheme) {
       setTheme(localTheme);
       document.documentElement.classList.add(localTheme);
-      
     } else {
       setTheme("light");
       localStorage.setItem("theme", "light");

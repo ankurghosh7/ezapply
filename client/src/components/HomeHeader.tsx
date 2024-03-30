@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   HoverCard,
   HoverCardContent,
@@ -10,13 +10,10 @@ import {
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { useTheme } from "@/providers/ThemeProvider";
 import { LuSun } from "react-icons/lu";
@@ -36,6 +33,7 @@ function HomeHeader() {
     { name: "Services", href: "/services", active: false },
     { name: "About Us", href: "/about", active: false },
   ];
+
   return (
     <nav className="grid md:grid-cols-3 items-center py-5">
       <div className="w-28">
@@ -61,14 +59,16 @@ function HomeHeader() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-transparent">
+                Services
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <NavigationMenuLink>Link</NavigationMenuLink>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink className={""}>
                   Documentation
                 </NavigationMenuLink>
               </Link>
