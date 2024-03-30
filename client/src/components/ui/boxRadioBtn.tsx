@@ -6,7 +6,7 @@ import { Circle } from "lucide-react";
 interface BoxRadioBtnProps {
   title: string;
   des: string;
-  iconImage: string;
+  iconimage: string;
 }
 const BoxRadioBtn = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
@@ -32,7 +32,7 @@ const BoxRadioBtn = React.forwardRef<
         <p className="text-sm">{props.des}</p>
       </div>
       <div className="col-span-3 h-full ">
-        <img src={props.iconImage} alt="icon" />
+        <img src={props.iconimage} alt="icon" />
       </div>
     </RadioGroupPrimitive.Item>
   );

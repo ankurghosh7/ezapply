@@ -1,15 +1,13 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BoxRadioBtn from "../ui/boxRadioBtn";
 import { RadioGroup } from "../ui/radio-group";
-import { IoIosInformationCircle } from "react-icons/io";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+  useForm,
+  SubmitHandler,
+  Controller,
+  FormProvider,
+} from "react-hook-form";
 import { jobSeekerSignupFormSchema } from "@/schemas/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -17,15 +15,16 @@ import FormInput from "../global/FormInput";
 
 function SignupFrom() {
   type jobSeekerSignupForm = z.infer<typeof jobSeekerSignupFormSchema>;
-
+  const [showPassword, setShowPassword] = useState(false);
+  const methods = useForm<jobSeekerSignupForm>({
+    resolver: zodResolver(jobSeekerSignupFormSchema),
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<jobSeekerSignupForm>({
-    resolver: zodResolver(jobSeekerSignupFormSchema),
-  });
+  } = methods;
 
   const onSubmit: SubmitHandler<jobSeekerSignupForm> = (data, event) => {
     event?.preventDefault();
@@ -36,161 +35,128 @@ function SignupFrom() {
     document.title = "Signup";
   }, []);
   return (
-    <form className="w-full " onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-2 space-y-2">
-        <div className="flex flex-col space-y-1">
-          {/* <label htmlFor="firstName" className="flex items-center space-x-2">
-            <span>First Name </span>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <IoIosInformationCircle className="text-gray-500" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="text-sm">
-                    This is the name that will be displayed on your public
-                    profile. Most people use their real name.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            className={`p-2 rounded-lg w-full border-2 border-gray-300 ${
-              errors.firstName?.message
-                ? "border-red-500 outline-red-500 text-red-500"
-                : ""
-            }`}
-            placeholder="Enter your name"
-            autoComplete="name"
-            {...register("firstName")}
-          />
-          {errors.firstName?.message && (
-            <p className="text-red-500">{errors.firstName?.message}</p>
-          )} */}
-
-          <FormInput
-            name="firstName"
-            type="text"
-            placeholder="Enter your name"
-            autoComplete="name"
-            error={errors.firstName?.message}
-            label="First Name"
-            showInfo={true}
-            infoString="This is the name that will be displayed on your public profile. Most people use their real name."
-            register={register("firstName")}
-          />
+    <FormProvider {...methods}>
+      <form className="w-full space-y-5" onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-2 space-y-2 md:space-y-0">
+          <div className="">
+            <FormInput
+              placeholder="Enter your name"
+              error={errors.firstName?.message}
+              label="First Name"
+              showInfo={true}
+              infoString="This is the name that will be displayed on your public profile. Most people use their real name."
+              name="firstName"
+              id="first_name"
+              type="text"
+            />
+          </div>
+          <div className="">
+            <FormInput
+              name="lastName"
+              type="text"
+              placeholder="Enter your last name"
+              id="last_name"
+              error={errors.lastName?.message}
+              label="Last Name"
+              showInfo={false}
+            />
+          </div>
         </div>
-        <div className="space-y-1">
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            type="text"
-            id="lastName"
-            className="p-2 rounded-lg w-full border-2 border-gray-300"
-            placeholder="Enter your last name"
-            autoComplete="name"
-            {...register("lastName")}
-          />
-          {errors.lastName?.message && (
-            <p className="text-red-500">{errors.lastName?.message}</p>
-          )}
-        </div>
-      </div>
-      <div className=" space-y-4 pt-5">
-        <div className="space-y-1">
-          <label htmlFor="email" className="block">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="w-full p-2 rounded-lg border"
-            autoComplete="email"
-            placeholder="Enter your email address"
-            {...register("email")}
-          />
-          {errors.email?.message && (
-            <p className="text-red-500">{errors.email?.message}</p>
-          )}
-        </div>
-        <div className="space-y-1">
-          <label htmlFor="phone" className="block">
-            Phone
-          </label>
-          <input
-            type="number"
-            id="phone"
-            className="w-full p-2 rounded-lg border"
-            autoComplete="mobile tel"
-            placeholder="Enter your phone number"
-            {...register("phone")}
-          />
-          {errors.phone?.message && (
-            <p className="text-red-500">{errors.phone?.message}</p>
-          )}
-        </div>
-        <div className="space-y-1">
-          <label htmlFor="password" className="block">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="w-full p-2 rounded-lg border"
-            autoComplete="new-password"
-            placeholder="Enter your password"
-            {...register("password")}
-          />
-          {errors.password?.message && (
-            <p className="text-red-500">{errors.password?.message}</p>
-          )}
-        </div>
-      </div>
-      <div>
-        <h1>Work Information</h1>
-        <div>
-          <Controller
-            name="workExperience"
-            render={({ field }) => (
-              <RadioGroup
-                className="flex"
-                onValueChange={field.onChange}
-                defaultValue={field.value}
+        <div className=" space-y-5">
+          <div className="space-y-1">
+            <FormInput
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+              id="email"
+              error={errors.email?.message}
+              label="Email"
+              showInfo={true}
+              infoString="This is the email address we will use to communicate with you and send you notifications."
+            />
+          </div>
+          <div className="space-y-1">
+            <FormInput
+              name="phone"
+              type="number"
+              placeholder="Enter your phone number"
+              id="phone_number"
+              error={errors.phone?.message}
+              label="Phone"
+              showInfo={true}
+              infoString="Place enter valid phone number for verification and contact purposes."
+            />
+          </div>
+          <div className="space-y-1">
+            <label htmlFor="password" className="block">
+              Password
+            </label>
+            <div className="flex focus-within:outline px-2 focus-within:border-transparent bg-transparent border-2 rounded-xl w-full focus:outline-none focus:ring-1 ring-orange-500 focus:ring-offset-2 ring-offset-slate-50  dark:ring-offset-background focus:border-transparent tramsition-all duration-200 ease-in-out ">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="w-0 flex-1 py-2 border-0 outline-none bg-transparent"
+                autoComplete="new-password"
+                placeholder="Enter your password"
+                {...register("password", { minLength: 6 })}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-sm font-medium select-none border-none outline-none focus:outline-none"
               >
-                <BoxRadioBtn
-                  value="default"
-                  id="r1"
-                  className="aria-checked:border-orange-500"
-                  des="I am looking for a job"
-                  title="Frasser"
-                  iconImage="https://cdn-icons-png.flaticon.com/512/2924/2924814.png"
-                />
-                <BoxRadioBtn
-                  value="vdvs"
-                  id="r1"
-                  className="aria-checked:border-orange-500"
-                  des="I am looking for a job"
-                  title="Frasser"
-                  iconImage="https://cdn-icons-png.flaticon.com/512/2924/2924814.png"
-                />
-              </RadioGroup>
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+            {errors.password?.message && (
+              <p className="text-red-500">{errors.password?.message}</p>
             )}
-            control={control}
-          />
-          {errors.workExperience?.message && (
-            <p className="text-red-500">{errors.workExperience?.message}</p>
-          )}
+          </div>
         </div>
-      </div>
-      <button
-        type="submit"
-        className="bg-blue-500 text-white p-2 rounded-lg w-full"
-      >
-        SignIn
-      </button>
-    </form>
+        <div className="space-y-2">
+          <h1>Work Information</h1>
+          <div>
+            <Controller
+              name="workExperience"
+              render={({ field }) => (
+                <RadioGroup
+                  className="flex"
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <BoxRadioBtn
+                    value="default"
+                    id="r1"
+                    className="aria-checked:border-orange-500 rounded-xl border-gray-300"
+                    des="I am looking for a job"
+                    title="Frasser"
+                    iconimage="https://cdn-icons-png.flaticon.com/512/2924/2924814.png"
+                  />
+                  <BoxRadioBtn
+                    value="vdvs"
+                    id="r2"
+                    className="aria-checked:border-orange-500 rounded-xl border-gray-300"
+                    des="I am looking for a job"
+                    title="Frasser"
+                    iconimage="https://cdn-icons-png.flaticon.com/512/2924/2924814.png"
+                  />
+                </RadioGroup>
+              )}
+              control={control}
+            />
+            {errors.workExperience?.message && (
+              <p className="text-red-500">{errors.workExperience?.message}</p>
+            )}
+          </div>
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white p-2 rounded-lg w-full"
+        >
+          SignIn
+        </button>
+      </form>
+    </FormProvider>
   );
 }
 

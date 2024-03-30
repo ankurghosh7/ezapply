@@ -1,17 +1,4 @@
 import React from "react";
-interface FormInputProps {
-  label: string;
-  type: string;
-  name: string;
-  placeholder: string;
-  error: string | undefined;
-  autoComplete: string;
-  className?: string;
-  showInfo: boolean;
-  infoString?: string;
-  props?: any;
-  register: ReturnType<typeof useFormContext>["register"];
-}
 import {
   Tooltip,
   TooltipContent,
@@ -20,22 +7,35 @@ import {
 } from "@/components/ui/tooltip";
 import { IoIosInformationCircle } from "react-icons/io";
 import { useFormContext } from "react-hook-form";
+
+interface FormInputProps {
+  label: string;
+  id: string;
+  name: string;
+  placeholder: string;
+  error: string | undefined;
+  className?: string;
+  showInfo: boolean;
+  infoString?: string;
+  type: string;
+}
+
 function FormInput({
-  autoComplete,
   error,
   label,
   name,
   placeholder,
   showInfo,
-  type,
-  register,
+  id,
   className,
   infoString,
-  props,
+  type,
+  ...rest
 }: FormInputProps) {
+  const { register } = useFormContext();
   return (
     <>
-      <label htmlFor={name} className="block">
+      <label htmlFor={id} className="flex items-center space-x-2">
         <span>{label}</span>
         {showInfo && (
           <TooltipProvider>
@@ -51,15 +51,14 @@ function FormInput({
         )}
       </label>
       <input
-        type={type}
-        id={name}
-        className={`p-2 rounded-lg w-full border-2 border-gray-300  ${
-          error ? "border-red-500 outline-red-500 text-red-500" : ""
+        className={`p-2 rounded-xl w-full border-2 border-gray-300 dark:border-gray-800 bg-transparent focus:outline-none focus:border-transparent tramsition-all duration-200 ease-in-out  ${
+          error ? "border-red-500 outline-red-500 " : ""
         } ${className}`}
-        autoComplete={autoComplete}
         placeholder={placeholder}
-        {...props}
-        {...register}
+        id={id}
+        type={type}
+        {...register(name)}
+        {...rest}
       />
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </>

@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
 import {
@@ -21,7 +19,6 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useRouter } from "next/navigation";
 export default function ForgotPasswordFrom() {
@@ -39,9 +36,9 @@ export default function ForgotPasswordFrom() {
       >
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>Reset password</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
+              click reset password to reset your password
             </DialogDescription>
           </DialogHeader>
           <ProfileForm />
@@ -65,9 +62,9 @@ export default function ForgotPasswordFrom() {
     >
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerTitle>Reset password</DrawerTitle>
           <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
+            click reset password to reset your password
           </DrawerDescription>
         </DrawerHeader>
         <ProfileForm className="px-4" />
@@ -83,14 +80,15 @@ export default function ForgotPasswordFrom() {
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
   return (
-    <form className={cn("grid items-start gap-4", className)}>
-      <div className="grid gap-2">
+    <form className={cn("grid items-start space-y-8", className)}>
+      <div className="flex flex-col space-y-2">
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" defaultValue="shadcn@example.com" />
-      </div>
-      <div className="grid gap-2">
-        <label htmlFor="username">Username</label>
-        <input id="username" defaultValue="@shadcn" />
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter register email"
+          className="p-2 rounded-xl bg-transparent border-2 border-gray-300 w-full focus:outline-none focus:ring-1 ring-orange-500 focus:ring-offset-2 ring-offset-slate-50  dark:ring-offset-background focus:border-transparent"
+        />
       </div>
       <Button type="submit">Save changes</Button>
     </form>

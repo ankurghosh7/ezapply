@@ -18,12 +18,18 @@ import {
   navigationMenuTriggerStyle,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import { useTheme } from "@/providers/ThemeProvider";
+import { LuSun } from "react-icons/lu";
+import { RiMoonClearFill } from "react-icons/ri";
+import { Button } from "./ui/button";
+
 interface NavItemProps {
   name: string;
   href: string;
   active: boolean;
 }
 function HomeHeader() {
+  const { theme, toggleTheme } = useTheme();
   const navItems: NavItemProps[] = [
     { name: "Jobs", href: "/jobs", active: false },
     { name: "Companies", href: "/companies", active: false },
@@ -47,7 +53,9 @@ function HomeHeader() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Jobs</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-transparent">
+                Jobs
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <NavigationMenuLink>Link</NavigationMenuLink>
               </NavigationMenuContent>
@@ -69,6 +77,17 @@ function HomeHeader() {
         </NavigationMenu>
       </div>
       <div className="space-x-4 flex justify-end">
+        <Button
+          variant={"ghost"}
+          size={"icon"}
+          onClick={() => {
+            toggleTheme(theme);
+            console.log("theme", theme);
+          }}
+          className="text-2xl"
+        >
+          {theme === "light" ? <LuSun /> : <RiMoonClearFill />}
+        </Button>
         <Link href="/jobseeker/auth/signin">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Signin
