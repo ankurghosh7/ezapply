@@ -2,6 +2,15 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
 import { GrLocation } from "react-icons/gr";
+import { RiSoundModuleLine } from "react-icons/ri";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 function HemoJobSearch() {
@@ -68,7 +77,7 @@ function HemoJobSearch() {
     "Fashion Designer",
   ];
   return (
-    <div className="w-full h-[calc(100vh-80px)] relative  overflow-clip">
+    <div className="w-full h-[calc(100vh-80px)] relative  overflow-visible overflow-x-clip">
       <div className="text-center space-y-20 py-24 z-10">
         <div className="space-y-4">
           <h1 className="xl:text-5xl text-center font-bold space-x-2">
@@ -109,9 +118,22 @@ function HemoJobSearch() {
               <input
                 type="text"
                 placeholder="Location"
-                className="w-44 px-2 border-0 focus:outline-none"
+                className="w-36 px-2 border-0 focus:outline-none"
               />
             </div>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <RiSoundModuleLine className="text-xl cursor-pointer border-none focus:outline-none dark:text-black" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuItem>Subscription</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
           <Button className="bg-blue-500 text-white px-8 rounded-full shadow-md cursor-pointer z-10">
             Search
@@ -119,14 +141,14 @@ function HemoJobSearch() {
         </div>
       </div>
       <div className="overflow-x-hidden bg-transparent z-10 my-10 absolute bottom-0">
-        <motion.div
+        {/* <motion.div
           className="flex whitespace-nowrap"
           animate={{
-            x: [100, 0, -100], // Keyframes for the animation
+            x: [10, "-100%"], // Keyframes for the animation
           }}
           transition={{
             repeat: Infinity, // Repeat the animation infinitely
-            duration: 5, // Animation duration
+            duration: 100, // Animation duration
             ease: "linear", // Linear easing for continuous motion
           }}
         >
@@ -138,9 +160,9 @@ function HemoJobSearch() {
               {category}
             </div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </div>
-      <div className="absolute w-full h-full top-0 ">
+      {/* <div className="absolute w-full h-full top-0 ">
         <div className="absolute mx-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 overflow-visible">
           <motion.div
             className="w-[90vh] h-[90vh] rounded-full border-2 border-gray-300 dark:border-gray-600 relative flex justify-center items-center"
@@ -177,7 +199,7 @@ function HemoJobSearch() {
             <div className="w-16 h-16 rounded-full bg-white absolute top-1/2 right-0 translate-x-7"></div>
           </motion.div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
