@@ -77,7 +77,7 @@ function HemoJobSearch() {
     "Fashion Designer",
   ];
   return (
-    <div className="w-full h-[calc(100vh-80px)] relative  overflow-visible overflow-x-clip">
+    <div className="w-full h-[calc(100vh-80px)] relative  overflow-visible overflow-x-clip overflow-ellipsis">
       <div className="text-center space-y-20 py-24 z-10">
         <div className="space-y-4">
           <h1 className="xl:text-5xl text-center font-bold space-x-2">
@@ -86,7 +86,9 @@ function HemoJobSearch() {
             </span>
             <span className="text-primary">Dream Job</span>
           </h1>
-          <p>Start your career with us. We have 3000+ job offers for you!</p>
+          <p className="dark:text-zinc-400 text-gray-600 text-base">
+            Start your career with us. We have 3000+ job offers for you!
+          </p>
         </div>
         <div className="flex flex-row space-x-2 z-10 items-center justify-center">
           <div className="w-fit h-fit bg-white rounded-full flex items-center p-4 select-none relative z-10 shadow-md">
@@ -140,8 +142,8 @@ function HemoJobSearch() {
           </Button>
         </div>
       </div>
-      <div className="overflow-x-hidden bg-transparent z-10 my-10 absolute bottom-0">
-        {/* <motion.div
+      <div className="overflow-x-hidden bg-transparent z-10 my-10 absolute bottom-0 space-y-5">
+        <motion.div
           className="flex whitespace-nowrap"
           animate={{
             x: [10, "-100%"], // Keyframes for the animation
@@ -160,9 +162,29 @@ function HemoJobSearch() {
               {category}
             </div>
           ))}
-        </motion.div> */}
+        </motion.div>
+        <motion.div
+          className="flex whitespace-nowrap"
+          animate={{
+            x: ["-100%", 0, 1], // Keyframes for the animation
+          }}
+          transition={{
+            repeat: Infinity, // Repeat the animation infinitely
+            duration: 100, // Animation duration
+            ease: "linear", // Linear easing for continuous motion
+          }}
+        >
+          {jobCategories.map((category, index) => (
+            <div
+              className="flex-none py-2 px-4 rounded-full bg-white dark:bg-gray-900 mx-4 shadow-md border border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-primary dark:hover:bg-primary hover:text-white transition-all duration-300 ease-in-out"
+              key={index}
+            >
+              {category}
+            </div>
+          ))}
+        </motion.div>
       </div>
-      {/* <div className="absolute w-full h-full top-0 ">
+      <div className="absolute w-full h-full top-0 ">
         <div className="absolute mx-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 overflow-visible">
           <motion.div
             className="w-[90vh] h-[90vh] rounded-full border-2 border-gray-300 dark:border-gray-600 relative flex justify-center items-center"
@@ -199,7 +221,7 @@ function HemoJobSearch() {
             <div className="w-16 h-16 rounded-full bg-white absolute top-1/2 right-0 translate-x-7"></div>
           </motion.div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

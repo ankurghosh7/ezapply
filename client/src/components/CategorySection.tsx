@@ -10,10 +10,6 @@ interface Category {
 function CategorySection() {
   const categories: Category[] = [
     {
-      name: "Design & Development",
-      icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966500/web-programming_iffg2a.png",
-    },
-    {
       name: "Marketing",
       icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966499/bullhorn_wzflbe.png",
     },
@@ -34,21 +30,14 @@ function CategorySection() {
       icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966500/management-service_kguxzq.png",
     },
     {
-      name: "IT & Networking",
+      name: "IT & Engineering",
       icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966500/technical-support_smr0k7.png",
     },
     {
       name: "Legal",
       icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966499/balance_qj92vg.png",
     },
-    {
-      name: "Engineering & Architecture",
-      icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966500/prototype_n798w4.png",
-    },
-    {
-      name: "Data Science & Analytics",
-      icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966499/data_kbthvc.png",
-    },
+
     {
       name: "Internship",
       icon: "https://res.cloudinary.com/dx9lhxxaa/image/upload/v1711966499/certficate_bz4kqf.png",
@@ -59,10 +48,12 @@ function CategorySection() {
     },
   ];
   return (
-    <div className="my-5 space-y-20">
+    <div className="xl:mt-20 space-y-10  ">
       <div className="xl:px-[25%] text-center space-y-2">
-        <h2 className="text-3xl font-bold text-center">Explore by Category</h2>
-        <p className="text-gray-600 text-base dark:text-gray-400">
+        <h2 className="text-3xl font-bold ">
+          <span>Explore by</span> <span className="text-primary">Category</span>
+        </h2>
+        <p className="dark:text-zinc-400 text-gray-600 text-base">
           Browse jobs by category to view our most popular job titles and
           industries. Find the right position and build your career.
         </p>
@@ -72,22 +63,24 @@ function CategorySection() {
         {categories.map((category, index) => (
           <div
             key={index}
-            className="group flex flex-row items-center justify-center text-center bg-white dark:bg-black/20 dark:backdrop-blur-md	 px-5 py-2 rounded-full shadow-md  hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer hover:shadow-2xl relative border border-transparent dark:border-zinc-800"
+            className="group flex flex-row items-center justify-center text-center bg-white dark:bg-black/20 dark:backdrop-blur-md	 px-5 py-4 rounded-xl shadow-md  hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer hover:shadow-2xl relative border-2 border-gray-300 dark:border-zinc-800"
           >
-            {typeof category.icon === "string" ? (
-              <Image
-                src={category.icon}
-                alt={category.name}
-                width={50}
-                height={50}
-                className="w-8 h-8 dark:invert"
-              />
-            ) : (
-              <category.icon size={50} className="w-8 h-8" />
-            )}
+            <div className="bg-indigo-400/10 p-2 rounded-full">
+              {typeof category.icon === "string" ? (
+                <Image
+                  src={category.icon}
+                  alt={category.name}
+                  width={50}
+                  height={50}
+                  className="w-5 h-5 dark:invert"
+                />
+              ) : (
+                <category.icon size={50} className="w-8 h-8" />
+              )}
+            </div>
             <p className="text-base ml-4">{category.name}</p>
-            <IoIosArrowForward className="text-gray-400 group-hover:text-gray-600  dark:group-hover:text-white" />
-            <span className="group-hover:opacity-100 block transition duration-500 opacity-0 absolute h-[2px] w-[calc(100%-40px)] -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-orange-400 to-transparent  mx-auto"></span>
+            <IoIosArrowForward className="text-gray-400 group-hover:text-gray-600  dark:group-hover:text-white opacity-0 group-hover:opacity-100 group-hover:translate-x-2" />
+            <span className="group-hover:opacity-100 block transition duration-500 opacity-0 absolute h-[2px] w-[calc(100%-10px)] -bottom-[2px] inset-x-0 bg-gradient-to-r from-transparent via-orange-400 to-transparent  mx-auto"></span>
             <span className="group-hover:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-[2px] w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-orange-400 to-transparent"></span>
           </div>
         ))}

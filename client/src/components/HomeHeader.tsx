@@ -19,6 +19,7 @@ import { useTheme } from "@/providers/ThemeProvider";
 import { LuSun } from "react-icons/lu";
 import { RiMoonClearFill } from "react-icons/ri";
 import { Button } from "./ui/button";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 
 interface NavItemProps {
   name: string;
@@ -59,7 +60,7 @@ function HomeHeader() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent">
+              <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent">
                 Services
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -77,42 +78,62 @@ function HomeHeader() {
         </NavigationMenu>
       </div>
       <div className="space-x-4 flex justify-end">
-        <Button
-          variant={"ghost"}
-          size={"icon"}
-          onClick={() => {
-            toggleTheme(theme);
-            console.log("theme", theme);
-          }}
-          className="text-2xl"
-        >
-          {theme === "light" ? <LuSun /> : <RiMoonClearFill />}
-        </Button>
-        <Link href="/jobseeker/auth/signin">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Signin
-          </button>
-        </Link>
-        <Link href="/jobseeker/auth/signup">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Singup
-          </button>
-        </Link>
-        <HoverCard openDelay={100}>
-          <HoverCardTrigger>
-            <button className="w-full h-full">Dropdown</button>
-          </HoverCardTrigger>
-          <HoverCardContent className="w-48">
-            <ul className="space-y-4">
-              <li>
-                <Link href="/employer/auth/signin">Signin</Link>
-              </li>
-              <li>
-                <Link href="/employer/buy-job-post">Buy Job post</Link>
-              </li>
-            </ul>
-          </HoverCardContent>
-        </HoverCard>
+        <div>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            onClick={() => {
+              toggleTheme(theme);
+              console.log("theme", theme);
+            }}
+            className="text-2xl hover:bg-black/5 hover:dark:bg-accent/20 "
+          >
+            {theme === "light" ? <LuSun /> : <RiMoonClearFill />}
+          </Button>
+          <span className="inline-block w-[2px] h-1/2 bg-gray-400">
+
+          </span>
+        </div>
+        <div className="flex flex-row space-x-5">
+          <Link href="/jobseeker/auth/signin">
+            <Button
+              className="font-bold py-2 px-4  bg-transparent border-primary hover:border-transparent hover:bg-primary transition-colors duration-300	rounded-full hover:text-white"
+              variant={"outline"}
+            >
+              Signin
+            </Button>
+          </Link>
+          <Link href="/jobseeker/auth/signup">
+            <HoverBorderGradient
+              containerClassName="rounded-full"
+              as="button"
+              className="bg-primary hover:bg-primary-600 dark:hover:bg-primary-600 dark:bg-primary text-white "
+            >
+              Singup
+            </HoverBorderGradient>
+          </Link>
+
+          <HoverCard openDelay={100}>
+            <HoverCardTrigger>
+              <button className="w-full h-full font-medium">Employer</button>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-48 flex flex-col p-5 dark:bg-zinc-900 ">
+              <Link
+                href="/employer/auth/signin"
+                className="hover:bg-accent dark:hover:bg-accent/20 py-2 px-4 w-full rounded-lg text-center"
+              >
+                Signin
+              </Link>
+
+              <Link
+                href="/employer/buy-job-post"
+                className="hover:bg-accent dark:hover:bg-accent/20 py-2 px-4 w-full rounded-lg text-center"
+              >
+                Buy Job post
+              </Link>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
       </div>
     </nav>
   );

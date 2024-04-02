@@ -2,7 +2,7 @@ import React from "react";
 
 function GetHiredQuickSteps() {
   return (
-    <div className="">
+    <div className="xl:mt-20">
       <div className="xl:w-1/2 mx-auto my-10 text-center space-y-2 ">
         <h2 className="text-3xl font-bold ">
           <span>Get Hired in</span>{" "}
