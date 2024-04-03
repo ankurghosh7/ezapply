@@ -27,7 +27,7 @@ function SignIn() {
         </nav>
       </header>
       <main className="h-full md:h-[calc(100vh-80px)]">
-        <div className="w-full h-fit md:w-2/5 lg:w-1/3 bg-slate-300 rounded-xl shadow-lg mx-auto p-10">
+        <div className="w-full h-fit md:w-2/5 lg:w-1/3 bg-white rounded-xl shadow-lg mx-auto p-10">
           <div className="space-y-2 mb-10">
             <h1 className="text-3xl font-semibold text-center">Login</h1>
             <p className="text-base font-medium text-center">

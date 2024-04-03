@@ -143,7 +143,7 @@ function HemoJobSearch() {
         </div>
       </div>
       <div className="overflow-x-hidden bg-transparent z-10 my-10 absolute bottom-0 space-y-5">
-        <motion.div
+        {/* <motion.div
           className="flex whitespace-nowrap"
           animate={{
             x: [10, "-100%"], // Keyframes for the animation
@@ -182,7 +182,7 @@ function HemoJobSearch() {
               {category}
             </div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </div>
       <div className="absolute w-full h-full top-0 ">
         <div className="absolute mx-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 overflow-visible">

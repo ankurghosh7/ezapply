@@ -8,10 +8,10 @@ export default function Home() {
   return (
     <main className="min-h-screen ">
       <HemoJobSearch />
-      <RecentJobPosts />
       <CategorySection />
-      <AiResumeWritting />
+      <RecentJobPosts />
       <GetHiredQuickSteps />
+      <AiResumeWritting />
     </main>
   );
 }

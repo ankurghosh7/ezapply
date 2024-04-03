@@ -48,7 +48,7 @@ function CategorySection() {
     },
   ];
   return (
-    <div className="xl:mt-20 space-y-10  ">
+    <div className="xl:mt-20 space-y-10 bg-gradient-to-r from-[#eee9f0] dark:from-[#1e1e1e] to-[#e8ecf9] dark:to-[#121213] ">
       <div className="xl:px-[25%] text-center space-y-2">
         <h2 className="text-3xl font-bold ">
           <span>Explore by</span> <span className="text-primary">Category</span>

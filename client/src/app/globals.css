@@ -22,15 +22,15 @@
     --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
 
-    --accent: 225 100% 94%;
+    --accent: 234 100% 24%;
     --accent-foreground: 220.9 39.3% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
     --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    --input: 216 8% 80%;
+    --ring: 225 100% 57%;
 
     --radius: 0.5rem;
   }
@@ -61,8 +61,8 @@
     --destructive-foreground: 210 20% 98%;
 
     --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
+    --input: 0 0% 33%;
+    --ring: 225 100% 60%;
   }
 }
 

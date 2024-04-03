@@ -24,7 +24,8 @@ function RecentJobPosts() {
       title: "Sr. Software Engineer",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus",
-      location: "Mountain View, CA",
+      work_mode: "Remote",
+      job_type: "Full Time",
       link: "",
       company_name: "Google",
       company_logo:
@@ -35,7 +36,8 @@ function RecentJobPosts() {
       title: "Sr. Software Engineer",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus",
-      location: "Mountain View, CA",
+      work_mode: "Remote",
+      job_type: "Full Time",
       link: "",
       company_name: "Google",
       company_logo:
@@ -46,40 +48,8 @@ function RecentJobPosts() {
       title: "Sr. Software Engineer",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus",
-      location: "Mountain View, CA",
-      link: "",
-      company_name: "Google",
-      company_logo:
-        "https://images.unsplash.com/photo-1536485255710-1bedfeea2d52?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      createdAt: "2 days ago",
-    },
-    {
-      title: "Sr. Software Engineer",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus",
-      location: "Mountain View, CA",
-      link: "",
-      company_name: "Google",
-      company_logo:
-        "https://images.unsplash.com/photo-1536485255710-1bedfeea2d52?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      createdAt: "2 days ago",
-    },
-    {
-      title: "Sr. Software Engineer",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus",
-      location: "Mountain View, CA",
-      link: "",
-      company_name: "Google",
-      company_logo:
-        "https://images.unsplash.com/photo-1536485255710-1bedfeea2d52?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      createdAt: "2 days ago",
-    },
-    {
-      title: "Sr. Software Engineer",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus",
-      location: "Mountain View, CA",
+      work_mode: "Remote",
+      job_type: "Full Time",
       link: "",
       company_name: "Google",
       company_logo:
@@ -88,7 +58,7 @@ function RecentJobPosts() {
     },
   ];
   return (
-    <div className="space-y-10 xl:mt-20 bg-gradient-to-r from-[#eee9f0] dark:from-[#1e1e1e] to-[#e8ecf9] dark:to-[#121213]">
+    <div className="space-y-10 xl:mt-20 ">
       <div className="w-1/2 mx-auto text-center space-y-2">
         <h2 className="text-3xl font-bold ">
           <span>Recent</span> <span className="text-primary">Job Posts</span>

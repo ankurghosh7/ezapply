@@ -27,9 +27,9 @@ const BoxRadioBtn = React.forwardRef<
           <Circle className="h-2.5 w-2.5 fill-current text-current group-data-[state=checked]:text-white" />
         </RadioGroupPrimitive.Indicator>
       </div>
-      <div className="col-span-5 h-full flex flex-col justify-center items-center">
-        <h3 className="text-lg font-semibold">{props.title}</h3>
-        <p className="text-sm">{props.des}</p>
+      <div className="col-span-5 h-full flex flex-col justify-center items-start select-none">
+        <h3 className="text-lg font-semibold text-foreground">{props.title}</h3>
+        <p className="text-sm text-gray-500 dark:text-zinc-400">{props.des}</p>
       </div>
       <div className="col-span-3 h-full ">
         <img src={props.iconimage} alt="icon" />

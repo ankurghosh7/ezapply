@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/tooltip";
 import { IoIosInformationCircle } from "react-icons/io";
 import { useFormContext } from "react-hook-form";
+import { Input } from "../ui/input";
 
 interface FormInputProps {
   label: string;
@@ -36,7 +37,7 @@ function FormInput({
   return (
     <>
       <label htmlFor={id} className="flex items-center space-x-2">
-        <span>{label}</span>
+        <span className="text-black dark:text-white">{label}</span>
         {showInfo && (
           <TooltipProvider>
             <Tooltip>
@@ -50,8 +51,8 @@ function FormInput({
           </TooltipProvider>
         )}
       </label>
-      <input
-        className={`p-2 rounded-xl w-full border-2 border-gray-300 dark:border-gray-800 bg-transparent focus:outline-none focus:border-transparent tramsition-all duration-200 ease-in-out  ${
+      <Input
+        className={`rounded-lg ring-offset-[#e9ebf6] dark:ring-offset-background text-base h-11 border-2 focus:border-transparent ${
           error ? "border-red-500 outline-red-500 " : ""
         } ${className}`}
         placeholder={placeholder}

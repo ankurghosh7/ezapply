@@ -12,6 +12,7 @@ import { jobSeekerSignupFormSchema } from "@/schemas/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import FormInput from "../global/FormInput";
+import { Button } from "../ui/button";
 
 function SignupFrom() {
   type jobSeekerSignupForm = z.infer<typeof jobSeekerSignupFormSchema>;
@@ -38,7 +39,7 @@ function SignupFrom() {
     <FormProvider {...methods}>
       <form className="w-full space-y-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 md:space-x-2 space-y-2 md:space-y-0">
-          <div className="">
+          <div className="space-y-2">
             <FormInput
               placeholder="Enter your name"
               error={errors.firstName?.message}
@@ -50,7 +51,7 @@ function SignupFrom() {
               type="text"
             />
           </div>
-          <div className="">
+          <div className="space-y-2">
             <FormInput
               name="lastName"
               type="text"
@@ -91,14 +92,14 @@ function SignupFrom() {
             <label htmlFor="password" className="block">
               Password
             </label>
-            <div className="flex focus-within:outline px-2 focus-within:border-transparent bg-transparent border-2 rounded-xl w-full focus:outline-none focus:ring-1 ring-orange-500 focus:ring-offset-2 ring-offset-slate-50  dark:ring-offset-background focus:border-transparent tramsition-all duration-200 ease-in-out ">
+            <div className="flex w-full  border-input dark:ring-offset-background bg-transparent px-3 py-2 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-within::outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 rounded-lg ring-offset-[#e9ebf6] text-base h-11 border-2 focus-within:border-transparent">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
                 className="w-0 flex-1 py-2 border-0 outline-none bg-transparent"
                 autoComplete="new-password"
                 placeholder="Enter your password"
-                {...register("password", { minLength: 6 })}
+                {...register("password")}
               />
               <button
                 type="button"
@@ -125,15 +126,15 @@ function SignupFrom() {
                   defaultValue={field.value}
                 >
                   <BoxRadioBtn
-                    value="default"
+                    value="exprienced"
                     id="r1"
                     className="aria-checked:border-orange-500 rounded-xl border-gray-300"
                     des="I am looking for a job"
-                    title="Frasser"
+                    title="Exprienced"
                     iconimage="https://cdn-icons-png.flaticon.com/512/2924/2924814.png"
                   />
                   <BoxRadioBtn
-                    value="vdvs"
+                    value="frasher"
                     id="r2"
                     className="aria-checked:border-orange-500 rounded-xl border-gray-300"
                     des="I am looking for a job"
@@ -149,12 +150,9 @@ function SignupFrom() {
             )}
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded-lg w-full"
-        >
+        <Button type="submit" className="text-white rounded-lg w-full">
           SignIn
-        </button>
+        </Button>
       </form>
     </FormProvider>
   );
