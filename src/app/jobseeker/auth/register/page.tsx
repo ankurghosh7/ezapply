@@ -1,10 +1,9 @@
 import SignupFrom from "@/components/users/SignupFrom";
-import { dbConnect } from "@/dbConnect/db";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 
 function SignUp() {
-  dbConnect();
+  
   return (
     <div className="h-fit w-full ">
       <div className="hidden md:block w-[30%] h-[100vh] fixed bg-slate-500 rounded-r-3xl overflow-hidden">

@@ -15,7 +15,7 @@ import FormInput from "../global/FormInput";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
-import { User } from "@/models/user.model";
+import { createUser } from "@/lib/user";
 
 function SignupFrom() {
   type jobSeekerSignupForm = z.infer<typeof jobSeekerSignupFormSchema>;
@@ -31,9 +31,11 @@ function SignupFrom() {
     control,
   } = methods;
 
-  const onSubmit: SubmitHandler<jobSeekerSignupForm> = (data, event) => {
+  const onSubmit: SubmitHandler<jobSeekerSignupForm> = async (data, event) => {
     event?.preventDefault();
-    const file = data.resume[0];
+    // const file = data.resume[0];
+    // const newUser = await createUser();
+    console.log(data);
   };
   const getExprienceValue = (value: string) => {
     console.log(value);

@@ -7,8 +7,8 @@ export const jobSeekerSignupFormSchema = z.object({
   phone: z.string().min(10, "Phone number requires "),
   password: z.string().min(6, "Password requires at least 6 characters"),
   workExperience: z.string().min(1, "Work experience requires "),
-  resume: z.string().min(1, "Resume requires "),
-  currentCity: z.string().min(1, "Current city requires "),
+  resume: z.instanceof(File).optional(),
+  currentCity: z.string().optional()
 });
 export const jobSeekerLoginFormSchema = z.object({
   email: z.string().email("Invalid email address"),
