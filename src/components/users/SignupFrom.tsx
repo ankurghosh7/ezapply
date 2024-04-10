@@ -8,21 +8,21 @@ import {
   Controller,
   FormProvider,
 } from "react-hook-form";
-import { jobSeekerSignupFormSchema } from "@/schemas/zodFormSchema";
+import { userRegisterSchema } from "@/schemas/userRegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import FormInput from "../global/FormInput";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
-import { createUser } from "@/lib/user";
+import { createUser } from "@/lib/userActions";
 
 function SignupFrom() {
-  type jobSeekerSignupForm = z.infer<typeof jobSeekerSignupFormSchema>;
+  type jobSeekerSignupForm = z.infer<typeof userRegisterSchema>;
   const [showPassword, setShowPassword] = useState(false);
-  const [workExperience, setWorkExperience] = useState<string>("" as string);
+  const [workExperience, setWorkExperience] = useState<string>("");
   const methods = useForm<jobSeekerSignupForm>({
-    resolver: zodResolver(jobSeekerSignupFormSchema),
+    resolver: zodResolver(userRegisterSchema),
   });
   const {
     register,
@@ -33,9 +33,9 @@ function SignupFrom() {
 
   const onSubmit: SubmitHandler<jobSeekerSignupForm> = async (data, event) => {
     event?.preventDefault();
-    // const file = data.resume[0];
-    // const newUser = await createUser();
     console.log(data);
+    console.log(errors.resume);
+    console.log("clicked");
   };
   const getExprienceValue = (value: string) => {
     console.log(value);
@@ -166,44 +166,34 @@ function SignupFrom() {
             )}
           </div>
         </div>
-        {workExperience === "exprienced" && (
-          <div>
-            <div className="grid w-full max-w-sm items-center gap-1.5">
-              <label htmlFor="picture" className="text-base font-medium">
-                Upload Resume
-              </label>
-              <Input id="picture" type="file" className="rounded-full" />
-            </div>
-          </div>
-        )}
-        {workExperience === "frasher" && (
-          <>
+        <div>
+          {workExperience && (
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <label
                 htmlFor="picture"
                 className="text-sm font-medium space-x-2"
               >
                 <span> Upload Resume</span>
-                <span className="text-gray-500 dark:text-zinc-400">
-                  (optional)
-                </span>
+                {workExperience === "frasher" && (
+                  <span className="text-gray-500 dark:text-zinc-400">
+                    (optional)
+                  </span>
+                )}
               </label>
-              <Input id="picture" type="file" className="rounded-full" />
-            </div>
-            <div className="space-y-2">
-              <FormInput
-                id="current_city"
-                type="text"
-                name="current-city"
-                label="Current city"
-                placeholder="Enter your current city"
-                error={errors.currentCity?.message}
-                showInfo={true}
-                infoString="Your current city will help us to show you the most relevant job"
+              <Input
+                id="picture"
+                type="file"
+                className="rounded-full"
+                {...register("resume")}
               />
             </div>
-          </>
-        )}
+          )}
+          {errors.resume?.message && (
+            // @ts-expect-error
+            <p className="text-red-500 text-sm">{errors.resume?.message}</p>
+          )}
+        </div>
+
         <Button type="submit" className="text-white rounded-lg w-full">
           SignIn
         </Button>

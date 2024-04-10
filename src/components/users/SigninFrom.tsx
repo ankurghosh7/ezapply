@@ -4,19 +4,19 @@ import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { jobSeekerLoginFormSchema } from "@/schemas/zodFormSchema";
+import { userLoginSchema } from "@/schemas/userLoginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 function SigninFrom() {
-  type jobSeekerLoginForm = z.infer<typeof jobSeekerLoginFormSchema>;
+  type jobSeekerLoginForm = z.infer<typeof userLoginSchema>;
   const [seePassword, setSeePassword] = React.useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<jobSeekerLoginForm>({
-    resolver: zodResolver(jobSeekerLoginFormSchema),
+    resolver: zodResolver(userLoginSchema),
   });
   const onSubmit: SubmitHandler<jobSeekerLoginForm> = (data, event) => {
     event?.preventDefault();
