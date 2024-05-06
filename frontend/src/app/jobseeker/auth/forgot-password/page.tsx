@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { jobSeekerForgotPasswordFormSchema } from "@/schemas/zodFormSchema";
+import { userLoginSchema } from "@/schemas/userLoginSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,14 +8,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 function ForgotPassword() {
   type jobseekerForgotPasswordForm = z.infer<
-    typeof jobSeekerForgotPasswordFormSchema
+    typeof userLoginSchema
   >;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<jobseekerForgotPasswordForm>({
-    resolver: zodResolver(jobSeekerForgotPasswordFormSchema),
+    resolver: zodResolver(userLoginSchema),
   });
   const onSubmit: SubmitHandler<jobseekerForgotPasswordForm> = (
     data,

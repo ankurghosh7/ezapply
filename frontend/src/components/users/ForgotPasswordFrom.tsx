@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/drawer";
 import { useRouter } from "next/navigation";
 import { Input } from "../ui/input";
-import { jobSeekerForgotPasswordFormSchema } from "@/schemas/zodFormSchema";
+import { userLoginSchema } from "@/schemas/userLoginSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -84,15 +84,13 @@ export default function ForgotPasswordFrom() {
 }
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
-  type jobseekerForgotPasswordForm = z.infer<
-    typeof jobSeekerForgotPasswordFormSchema
-  >;
+  type jobseekerForgotPasswordForm = z.infer<typeof userLoginSchema>;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<jobseekerForgotPasswordForm>({
-    resolver: zodResolver(jobSeekerForgotPasswordFormSchema),
+    resolver: zodResolver(userLoginSchema),
   });
   const onSubmit: SubmitHandler<jobseekerForgotPasswordForm> = (
     data,

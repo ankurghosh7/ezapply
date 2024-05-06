@@ -35,7 +35,7 @@ function SignupFrom() {
     event?.preventDefault();
     console.log(data);
     await axios
-      .post("/api/auth/user/register", data, {
+      .post("http://localhost:9000/api/v1/user/register", data, {
         headers: {
           "Content-Type": "multipart/form-data",
           withCredentials: true,
