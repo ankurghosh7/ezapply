@@ -15,7 +15,7 @@ import FormInput from "../global/FormInput";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
-import { createUser } from "@/lib/userActions";
+import axios from "axios";
 
 function SignupFrom() {
   type jobSeekerSignupForm = z.infer<typeof userRegisterSchema>;
@@ -34,11 +34,19 @@ function SignupFrom() {
   const onSubmit: SubmitHandler<jobSeekerSignupForm> = async (data, event) => {
     event?.preventDefault();
     console.log(data);
-    console.log(errors.resume);
-    console.log("clicked");
+    await axios
+      .post("/api/auth/user/register", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          withCredentials: true,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        toast.success("User registered successfully");
+      });
   };
   const getExprienceValue = (value: string) => {
-    console.log(value);
     setWorkExperience(value);
   };
   useEffect(() => {

@@ -26,3 +26,5 @@ export const userRegisterSchema = z.object({
   resume: fileSchema,
   currentCity: z.string().optional(),
 });
+
+export type jobSeekerSignupForm = z.infer<typeof userRegisterSchema>;

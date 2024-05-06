@@ -27,10 +27,10 @@ function SignIn() {
         </nav>
       </header>
       <main className="h-full md:h-[calc(100vh-80px)]">
-        <div className="w-full h-fit md:w-1/2 lg:w-2/5 xl:w-1/3 md:bg-white  md:rounded-xl md:shadow-lg mx-auto p-10">
+        <div className="w-full h-fit md:w-1/2 lg:w-2/5 xl:w-1/3 md:bg-white md:dark:bg-white/5  md:rounded-xl md:shadow-lg mx-auto p-10">
           <div className="space-y-2 mb-10">
-            <h1 className="text-3xl font-semibold text-center">Login</h1>
-            <p className="text-base font-medium text-center">
+            <h1 className="text-3xl font-semibold text-center ">Login</h1>
+            <p className="text-base font-medium text-center dark:text-zinc-400">
               Hay, welcome back! Please login to your account to continue using
               our services.
             </p>
