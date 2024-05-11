@@ -1,4 +1,0 @@
-node_modules
-./public/ca.pem
-.env
-./dist
