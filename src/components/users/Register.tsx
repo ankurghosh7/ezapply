@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BoxRadioBtn from "../ui/boxRadioBtn";
 import { RadioGroup } from "../ui/radio-group";
 import {
@@ -35,17 +35,14 @@ function RegisterFrom() {
     event?.preventDefault();
     console.log(data);
     try {
-      const response = await axios.post(
-        "http://localhost:9000/api/v1/user/register",
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            withCredentials: true,
-          },
-        }
-      );
-      router.push(`/jobseeker/dashboard/${response.data.data.user._id}`);
+      const response = await axios.post("/api/v1/user/auth/register", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          withCredentials: true,
+        },
+      });
+      console.log(response.data);
+      router.push(`/j/dashboard/${response.data.user.id}`);
     } catch (error) {
       console.error(error);
     }

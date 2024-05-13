@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
-import { comparePasswordFn } from "@/utils/hashPassword";
-import { generatAccessAndRefershToken } from "@/utils/createToken";
+import { comparePasswordFn } from "@/lib/hashPassword";
+import { generatAccessAndRefershToken } from "@/lib/createToken";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {

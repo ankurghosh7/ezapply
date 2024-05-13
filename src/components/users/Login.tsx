@@ -25,11 +25,8 @@ function LoginFrom() {
   const onSubmit: SubmitHandler<jobSeekerLoginForm> = async (data, event) => {
     event?.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:9000/api/v1/user/login",
-        data
-      );
-      router.push(`/jobseeker/dashboard/${response.data.data.user._id}`);
+      const response = await axios.post("/api/v1/user/auth/login", data);
+      router.push(`/j/dashboard/${response.data.user.id}`);
     } catch (error) {
       console.error(error);
     }
@@ -98,10 +95,7 @@ function LoginFrom() {
           </label>
         </div>
         <div className="text-base w-fit text-right">
-          <Link
-            href="/jobseeker/auth/forgot-password"
-            className="text-neutral-500"
-          >
+          <Link href="/j/auth/forgot-password" className="text-neutral-500">
             Forgot password?
           </Link>
         </div>

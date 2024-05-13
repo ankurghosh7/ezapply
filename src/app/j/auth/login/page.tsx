@@ -21,7 +21,7 @@ function SignIn() {
           </Link>
         </div>
         <nav>
-          <Link href={"/jobseeker/auth/register"}>
+          <Link href={"/j/auth/register"}>
             <Button variant={"ghost"}>Signup</Button>
           </Link>
         </nav>

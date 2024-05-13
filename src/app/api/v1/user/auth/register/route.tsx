@@ -1,11 +1,11 @@
 // export const dynamic = "force-dynamic"; // defaults to auto
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { S3 } from "@/utils/r2Config";
+import { S3 } from "@/lib/r2Config";
 import prisma from "@/lib/prisma";
-import { generatAccessAndRefershToken } from "@/utils/createToken";
+import { generatAccessAndRefershToken } from "@/lib/createToken";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { hashPasswordFn } from "@/utils/hashPassword";
+import { hashPasswordFn } from "@/lib/hashPassword";
 
 export async function POST(request: NextRequest) {
   const data = await request.formData();
@@ -16,15 +16,30 @@ export async function POST(request: NextRequest) {
     lastName,
     phone,
     country,
-    exprience,
+    workExperience,
     city,
   } = Object.fromEntries(data);
   if (
-    [email, password, firstName, lastName, phone, exprience, country].some(
+    [email, password, firstName, lastName, phone, workExperience, country].some(
       (v) => !v
     )
   ) {
     return new Response("Place Enter All fileds", { status: 400 });
+  }
+  const existUser = await prisma.user.findFirst({
+    where: {
+      OR: [
+        {
+          email: String(email),
+        },
+        {
+          phoneNumber: String(phone),
+        },
+      ],
+    },
+  });
+  if (existUser) {
+    return new Response("User Already Exist", { status: 400 });
   }
   const file = data.get("resume") as File | null;
   let key: string | null = null;
@@ -56,7 +71,7 @@ export async function POST(request: NextRequest) {
       lastName: String(lastName),
       phoneNumber: String(phone),
       country: String(country),
-      workExprience: String(exprience),
+      workExprience: String(workExperience),
       city: String(city),
     },
   });

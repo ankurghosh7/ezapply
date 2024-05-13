@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   HoverCard,
   HoverCardContent,
@@ -93,7 +93,7 @@ function HomeHeader() {
           <span className="inline-block w-[2px] h-1/2 bg-gray-400"></span>
         </div>
         <div className="flex flex-row space-x-5">
-          <Link href="/jobseeker/auth/login">
+          <Link href="/j/auth/login">
             <Button
               className="font-bold py-2 px-4  bg-transparent border-primary hover:border-transparent hover:bg-primary transition-colors duration-300	rounded-full hover:text-white"
               variant={"outline"}
@@ -101,7 +101,7 @@ function HomeHeader() {
               Signin
             </Button>
           </Link>
-          <Link href="/jobseeker/auth/register">
+          <Link href="/j/auth/register">
             <HoverBorderGradient
               containerClassName="rounded-full"
               as="button"
@@ -117,14 +117,14 @@ function HomeHeader() {
             </HoverCardTrigger>
             <HoverCardContent className="w-48 flex flex-col p-5 dark:bg-zinc-900 ">
               <Link
-                href="/employer/auth/signin"
+                href="/c/auth/signin"
                 className="hover:bg-accent dark:hover:bg-accent/20 py-2 px-4 w-full rounded-lg text-center"
               >
                 Signin
               </Link>
 
               <Link
-                href="/employer/buy-job-post"
+                href="/c/buy-job-post"
                 className="hover:bg-accent dark:hover:bg-accent/20 py-2 px-4 w-full rounded-lg text-center"
               >
                 Buy Job post
